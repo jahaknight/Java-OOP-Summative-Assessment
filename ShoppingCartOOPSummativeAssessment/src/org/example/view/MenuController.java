@@ -59,6 +59,7 @@ public class MenuController {
             Quantity: [quantity]
             Cost: $[cost]
          */
+
     }
 
     private void addItemToCart(){

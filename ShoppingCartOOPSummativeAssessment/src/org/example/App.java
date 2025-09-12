@@ -25,6 +25,8 @@ public class App {
             running = menu.handleAction(userInput);
         }
 
+        console.writeMessage("Goodbye!");
+
     }
 
 }
