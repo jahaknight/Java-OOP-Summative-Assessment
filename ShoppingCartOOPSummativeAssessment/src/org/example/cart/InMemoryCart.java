@@ -1,7 +1,9 @@
 package org.example.cart;
 
+import org.example.catalog.StaticCatalog;
 import org.example.model.CartLine;
 import org.example.model.Item;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -9,10 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class InMemoryCart implements Cart{
-
+public class InMemoryCart implements Cart {
     private Map<String, CartLine> itemsInCart;
-
     public InMemoryCart(){
         itemsInCart = new HashMap<>();
     }
@@ -32,6 +32,7 @@ public class InMemoryCart implements Cart{
      * @param item the Item to add to the cart
      * @param quantity the number of items to add to the cart
      */
+
     @Override
     public void addItemToCart(Item item, int quantity){
         // we assume it is a valid Item that is in the catalog

@@ -15,7 +15,6 @@ import java.util.Map;
  */
 
 
-
 public class StaticCatalog implements Catalog{
 
     private final Map<String, Item> itemsBySku = new LinkedHashMap<>();
