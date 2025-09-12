@@ -1,4 +1,4 @@
 package org.example.cart;
 
-public class InMemoryCart {
+public class InMemoryCart implements Cart{
 }
