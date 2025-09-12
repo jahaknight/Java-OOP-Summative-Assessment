@@ -36,6 +36,19 @@ public class ConsoleIO {
         return input;
     }
 
+    public int getIntegerInputInRange(String prompt, int minimum, int maximum){
+        int input;
+        while(true){
+            input = getIntegerInput(prompt);
+            if(input < minimum || input > maximum){
+                System.out.println("Please enter a valid number within the range " + minimum + " - " + maximum);
+            } else{
+                break;
+            }
+        }
+        return input;
+    }
+
     public double getDoubleInput(String prompt){
         String response = getInput(prompt);
         double input;
