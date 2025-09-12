@@ -24,14 +24,46 @@ public class InMemoryCart implements Cart{
         return lines;
     }
 
+    /**
+     * Adds the given Item to the cart. If the Item does not already exist
+     * in the cart then a new CartLine is created
+     *
+     * @param item the Item to add to the cart
+     * @param quantity the number of items to add to the cart
+     */
     @Override
-    public void addItemToCart(Item item) {
-
+    public void addItemToCart(Item item, int quantity){
+        // we assume it is a valid Item that is in the catalog
+        String itemSKU = item.getSku();
+        if(itemsInCart.containsKey(itemSKU)){
+            itemsInCart.get(itemSKU).add(quantity);
+        } else {
+            CartLine newCartItem = new CartLine(item, quantity);
+            itemsInCart.put(itemSKU, newCartItem);
+        }
     }
 
-    @Override
-    public void removeItemFromCart(Item item) {
+    public void addItemToCart(Item item) {
+        addItemToCart(item, 1);
+    }
 
+
+
+    @Override
+    public void removeItemFromCart(Item item, int quantity) {
+        // we assume it is a valid Item that is in the catalog
+        String itemSKU = item.getSku();
+        if(!itemsInCart.containsKey(itemSKU)){
+            return;
+        }
+        itemsInCart.get(itemSKU).remove(quantity);
+        if(itemsInCart.get(itemSKU).getQuantity() <= 0){
+            itemsInCart.remove(itemSKU);
+        }
+    }
+
+    public void removeItemFromCart(Item item){
+        removeItemFromCart(item, 1);
     }
 
     @Override
