@@ -14,8 +14,6 @@ import java.util.Map;
  * Provides basic add/remove/find operations
  */
 
-
-
 public class StaticCatalog implements Catalog{
 
     private final Map<String, Item> itemsBySku = new LinkedHashMap<>();
