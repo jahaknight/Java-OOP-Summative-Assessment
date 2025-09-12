@@ -7,6 +7,7 @@ import org.example.catalog.StaticCatalog;
 import org.example.model.CartLine;
 import org.example.model.Item;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class MenuController {
@@ -74,7 +75,7 @@ public class MenuController {
         int itemIndex = console.getIntegerInputInRange("What item would you like to add to your cart:", 1, catalogItems.size());
         itemIndex--; // adjust for 0-index
         Item itemToAdd = catalogItems.get(itemIndex);
-        int quantity = console.getIntegerInput("How many " + itemToAdd.getName() + "s would you like to add: ");
+        int quantity = console.getIntegerInput("How much " + itemToAdd.getName() + " would you like to add: ");
         myCart.addItemToCart(itemToAdd, quantity);
     }
 
@@ -89,11 +90,11 @@ public class MenuController {
     }
 
     private void checkout(){
-        // TODO
-        /*
-        display all items and final cost
-        empty entire cart
-         */
+
+        displayCart();
+        BigDecimal subtotal = myCart.checkout();
+        console.writeMessage("Your total is: $" + subtotal.toString());
+        console.writeMessage("Cart is emptied");
     }
 
     private void printOrderedItems(List<Item> items){

@@ -21,14 +21,18 @@ public class ConsoleIO {
     }
 
     public int getIntegerInput(String prompt){
-        String response = getInput(prompt);
+        String response;
         int input;
         while(true){
+            response = getInput(prompt);
             try{
                 input = Integer.parseInt(response);
+                if(input < 0){
+                    throw new NumberFormatException(); // negative numbers are never allowed
+                }
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Please enter a proper whole number integer.");
+                System.out.println("Please enter a proper positive whole number integer.");
             } catch (Exception e) {
                 System.out.println("Please enter a valid response.");
             }

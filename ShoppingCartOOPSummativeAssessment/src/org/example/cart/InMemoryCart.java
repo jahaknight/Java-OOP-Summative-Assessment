@@ -77,13 +77,26 @@ public class InMemoryCart implements Cart{
     public BigDecimal getSubtotal() {
         BigDecimal subtotal = new BigDecimal("0");
         for(String sku : itemsInCart.keySet()){
-            subtotal = subtotal.add(itemsInCart.get(sku).getItem().getUnitPrice());
+            BigDecimal quantity = new BigDecimal(itemsInCart.get(sku).getQuantity());
+            subtotal = subtotal.add(quantity.multiply(itemsInCart.get(sku).getItem().getUnitPrice()));
         }
         return subtotal;
     }
 
+//    @Override
+//    public List<CartLine> checkout() {
+//        List<CartLine> cartItems = new ArrayList<>();
+//        for(String sku : itemsInCart.keySet()){
+//            cartItems.add(itemsInCart.get(sku));
+//        }
+//        itemsInCart.clear();
+//        return cartItems;
+//    }
+
     @Override
-    public void checkout() {
-        // todo - what do I even do here other than empty the cart?
+    public BigDecimal checkout() {
+        BigDecimal subtotal = getSubtotal();
+        itemsInCart.clear();
+        return subtotal;
     }
 }
