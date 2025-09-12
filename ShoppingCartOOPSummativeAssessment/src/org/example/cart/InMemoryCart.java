@@ -83,16 +83,6 @@ public class InMemoryCart implements Cart{
         return subtotal;
     }
 
-//    @Override
-//    public List<CartLine> checkout() {
-//        List<CartLine> cartItems = new ArrayList<>();
-//        for(String sku : itemsInCart.keySet()){
-//            cartItems.add(itemsInCart.get(sku));
-//        }
-//        itemsInCart.clear();
-//        return cartItems;
-//    }
-
     @Override
     public BigDecimal checkout() {
         BigDecimal subtotal = getSubtotal();
