@@ -5,6 +5,7 @@ import org.example.model.CartLine;
 import org.example.model.Item;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +27,7 @@ public class InMemoryCart implements Cart {
 
     /**
      * Adds the given Item to the cart. If the Item does not already exist
-     * in the cart then a new CartLine is created
+     * in the cart then a new CartLine is created and added to the cart.
      *
      * @param item the Item to add to the cart
      * @param quantity the number of items to add to the cart
@@ -49,6 +50,13 @@ public class InMemoryCart implements Cart {
     }
 
 
+    /**
+     * Removes the amount of the given Item from the cart. If the Item then
+     * has a quantity of 0 or less then it is removed from the cart
+     *
+     * @param item The item to remove from the cart
+     * @param quantity The quantity of the item to remove from the cart
+     */
     @Override
     public void removeItemFromCart(Item item, int quantity) {
         // we assume it is a valid Item that is in the catalog
@@ -67,12 +75,19 @@ public class InMemoryCart implements Cart {
     }
 
     @Override
-    public double getSubtotal() {
-        return 0;
+    public BigDecimal getSubtotal() {
+        BigDecimal subtotal = new BigDecimal("0");
+        for(String sku : itemsInCart.keySet()){
+            BigDecimal quantity = new BigDecimal(itemsInCart.get(sku).getQuantity());
+            subtotal = subtotal.add(quantity.multiply(itemsInCart.get(sku).getItem().getUnitPrice()));
+        }
+        return subtotal;
     }
 
     @Override
-    public void checkout() {
-
+    public BigDecimal checkout() {
+        BigDecimal subtotal = getSubtotal();
+        itemsInCart.clear();
+        return subtotal;
     }
 }
