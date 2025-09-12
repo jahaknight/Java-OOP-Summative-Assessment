@@ -1,4 +1,4 @@
-package test.java;
+package org.example.cart;
 
 public class InMemoryCartTest {
 }
