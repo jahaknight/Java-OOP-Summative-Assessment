@@ -10,16 +10,36 @@ public class ConsoleIO {
         console = new Scanner(System.in);
     }
 
+    /**
+     * Prints message to the screen.
+     * This is a simple replacement for System.out.println()
+     *
+     * @param message The string to be displayed
+     */
     public void writeMessage(String message){
         System.out.println(message);
     }
 
+    /**
+     * Gets a string input from the user
+     *
+     * @param prompt Message to be displayed to the user
+     * @return A String inputted by the user
+     */
     public String getInput(String prompt){
         writeMessage(prompt);
         String input = console.nextLine();
         return input;
     }
 
+    /**
+     * Gets a whole number Integer input from the user. This method
+     * will also ensure an integer is entered and not a string, double,
+     * or any other input format.
+     *
+     * @param prompt Message to be displayed to the user
+     * @return An integer inputted by the user
+     */
     public int getIntegerInput(String prompt){
         String response;
         int input;
@@ -57,22 +77,6 @@ public class ConsoleIO {
                 System.out.println("Please enter a valid number within the range " + minimum + " - " + maximum);
             } else{
                 break;
-            }
-        }
-        return input;
-    }
-
-    public double getDoubleInput(String prompt){
-        String response = getInput(prompt);
-        double input;
-        while(true){
-            try{
-                input = Double.parseDouble(response);
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("Please enter a proper whole number integer.");
-            } catch (Exception e) {
-                System.out.println("Please enter a valid response.");
             }
         }
         return input;
