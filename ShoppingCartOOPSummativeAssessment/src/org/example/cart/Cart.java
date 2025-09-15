@@ -10,6 +10,5 @@ public interface Cart {
     public void addItemToCart(Item item, int quantity);
     public void removeItemFromCart(Item item, int quantity);
     public BigDecimal getSubtotal();
-//    public List<CartLine> checkout();
     public BigDecimal checkout();
 }

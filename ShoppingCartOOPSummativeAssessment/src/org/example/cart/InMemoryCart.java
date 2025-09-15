@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public class InMemoryCart implements Cart {
-    private Map<String, CartLine> itemsInCart;
+    private final Map<String, CartLine> itemsInCart;
     public InMemoryCart(){
         itemsInCart = new HashMap<>();
     }
