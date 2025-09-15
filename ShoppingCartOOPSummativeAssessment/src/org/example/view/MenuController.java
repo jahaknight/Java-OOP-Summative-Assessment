@@ -85,7 +85,7 @@ public class MenuController {
         int itemIndex = console.getIntegerInputInRange("What item would you like to remove from your cart:", 1, cartLineList.size());
         itemIndex--;
         Item itemToRemove = cartLineList.get(itemIndex).getItem();
-        int quantity = console.getIntegerInput("How many " + itemToRemove.getName() + "s would you like to remove: ");
+        int quantity = console.getIntegerInputInRange("How many " + itemToRemove.getName() + "s would you like to remove: ", 1, cartLineList.get(itemIndex).getQuantity());
         myCart.removeItemFromCart(itemToRemove, quantity);
     }
 

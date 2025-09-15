@@ -40,6 +40,15 @@ public class ConsoleIO {
         return input;
     }
 
+    /**
+     * Prints the prompt and gets user input that is within the given range
+     * with both the minimum and maximum inclusive
+     *
+     * @param prompt String to be printed to the user
+     * @param minimum minimum value the user can input
+     * @param maximum maximum valur the user can input
+     * @return the inputted value from the user
+     */
     public int getIntegerInputInRange(String prompt, int minimum, int maximum){
         int input;
         while(true){

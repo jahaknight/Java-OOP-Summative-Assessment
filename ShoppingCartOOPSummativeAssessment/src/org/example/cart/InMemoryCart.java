@@ -3,7 +3,6 @@ package org.example.cart;
 import org.example.catalog.StaticCatalog;
 import org.example.model.CartLine;
 import org.example.model.Item;
-import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
