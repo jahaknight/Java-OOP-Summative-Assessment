@@ -48,7 +48,7 @@ public class CartLine {
         if (delta <= 0) throw new IllegalArgumentException("delta > 0");
         quantity = Math.max(0, quantity - delta);
     }
-    
+
     /**
      * @return The total price of the item and its quantity
      */
