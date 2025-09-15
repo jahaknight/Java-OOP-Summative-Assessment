@@ -1,8 +1,6 @@
 package org.example.view;
 
-import org.example.cart.Cart;
 import org.example.cart.InMemoryCart;
-import org.example.catalog.Catalog;
 import org.example.catalog.StaticCatalog;
 import org.example.model.CartLine;
 import org.example.model.Item;
@@ -22,21 +20,16 @@ public class MenuController {
         console = new ConsoleIO();
     }
 
-    /*
-    1. display
-    2. remove item
-    3. add item
-    4. checkout
-    5. exit (return false)
+    /**
+     * This method is called solely by App.java to handle the functionality
+     * of the main loop and user interaction. It responds according to
+     * the user input and returns a boolean based on whether the user
+     * has chosen to exit or not.
+     *
+     * @param action An integer representing the user's menu choice
+     * @return {@code false} is user has chosen 5. Exit otherwise {@code true}
      */
     public boolean handleAction(int action){
-        // TODO
-        /*
-        there are 5 possible options: display, add, remove, checkout exit
-        each action calls its respective method
-        if user chooses exit then return false to signify end of program
-        otherwise return true
-         */
         switch (action){
             case 1:
                 displayCart();
@@ -56,6 +49,10 @@ public class MenuController {
         return true;
     }
 
+    /**
+     * Displays all items in the cart in the format
+     * {@code SKU} | {@code ITEM_NAME} | {@code QUANTITY} | {@code PRICE}
+     */
     private void displayCart(){
         List<CartLine> items = myCart.getLines();
         for(CartLine item : items){
@@ -79,6 +76,13 @@ public class MenuController {
         myCart.addItemToCart(itemToAdd, quantity);
     }
 
+    /**
+     * Removes an item and quantity from the cart
+     *
+     * <p>User is prompted for the Item to remove and then for the quantity of the item
+     * to remove restricting the user's choice to within the range of the current
+     * quantity of the chosen Item.</p>
+     */
     private void removeItemFromCart(){
         List<CartLine> cartLineList = myCart.getLines();
         printOrderedCartItems(cartLineList);
@@ -89,14 +93,24 @@ public class MenuController {
         myCart.removeItemFromCart(itemToRemove, quantity);
     }
 
+    /**
+     * Displays all items and the subtotal. Afterward it then empties the cart.
+     */
     private void checkout(){
-
         displayCart();
         BigDecimal subtotal = myCart.checkout();
         console.writeMessage("Your total is: $" + subtotal.toString());
         console.writeMessage("Cart is emptied");
     }
 
+    /**
+     * Prints all Items to the screen with numbering
+     * to ease user input
+     *
+     * <p>Ex: 1. Bread   2. Milk   3. Watermelon   etc.</p>
+     *
+     * @param items The items to be numbered and printed
+     */
     private void printOrderedItems(List<Item> items){
         int i = 1;
         for(Item item : items){
@@ -105,6 +119,15 @@ public class MenuController {
         }
     }
 
+    /**
+     * Prints all Items to the screen with numbering
+     * to ease user input. Uses a different format to make the quantity
+     * of each item more visible when removing items.
+     *
+     * <p>Ex: 1. Bread x 2  2. Milk x 1   3. Watermelon x 3   etc.</p>
+     *
+     * @param items The CartLine items to be numbered and printed
+     */
     private void printOrderedCartItems(List<CartLine> items){
         int i = 1;
         for(CartLine item : items){
