@@ -1,6 +1,5 @@
 package org.example.cart;
 
-import org.example.catalog.StaticCatalog;
 import org.example.model.CartLine;
 import org.example.model.Item;
 
@@ -31,7 +30,6 @@ public class InMemoryCart implements Cart {
      * @param item the Item to add to the cart
      * @param quantity the number of items to add to the cart
      */
-
     @Override
     public void addItemToCart(Item item, int quantity){
         // we assume it is a valid Item that is in the catalog
@@ -44,6 +42,7 @@ public class InMemoryCart implements Cart {
         }
     }
 
+    // Overloaded method when quantity is not given
     public void addItemToCart(Item item) {
         addItemToCart(item, 1);
     }
@@ -69,10 +68,14 @@ public class InMemoryCart implements Cart {
         }
     }
 
+    // Overloaded method when quantity is not given
     public void removeItemFromCart(Item item){
         removeItemFromCart(item, 1);
     }
 
+    /**
+     * @return A subtotal of all items in the cart
+     */
     @Override
     public BigDecimal getSubtotal() {
         BigDecimal subtotal = new BigDecimal("0");
@@ -83,6 +86,9 @@ public class InMemoryCart implements Cart {
         return subtotal;
     }
 
+    /**
+     * Clears the cart and returns the subtotal of all items
+     */
     @Override
     public BigDecimal checkout() {
         BigDecimal subtotal = getSubtotal();
