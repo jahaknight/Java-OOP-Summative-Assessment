@@ -15,6 +15,12 @@ public class CartLine {
     private final Item item;   // product (immutable)
     private int quantity;      // current count in the cart (>= 0)
 
+    /**
+     * @param item Item being tracked in this section of the cart
+     * @param quantity Amount of the item in the cart
+     * @throws IllegalArgumentException when {@code item} is null
+     * or {@code quantity} is less than or equal to zero
+     */
     public CartLine(Item item, int quantity) {
         if (item == null) throw new IllegalArgumentException("item required");
         if (quantity <= 0) throw new IllegalArgumentException("quantity > 0 required");

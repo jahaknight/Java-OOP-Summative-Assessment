@@ -91,6 +91,10 @@ public class MenuController {
     private void removeItemFromCart(){
         // Get items in cart and display to user
         List<CartLine> cartLineList = myCart.getLines();
+        if(cartLineList.isEmpty()){
+            console.writeMessage("Your cart is empty. There is nothing to remove");
+            return;
+        }
         printOrderedCartItems(cartLineList);
 
         // Get selected item from user

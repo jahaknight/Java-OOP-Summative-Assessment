@@ -42,7 +42,7 @@ public class StaticCatalog implements Catalog{
      */
     @Override
     public void addItemToCatalog(Item item) {
-        if (item == null) throw new IllegalArgumentException("item required");
+        if (item == null) throw new IllegalArgumentException("Item required, was given null");
         String key = normalizeSku(item.getSku());
         if (itemsBySku.containsKey(key)) {
             throw new IllegalArgumentException("SKU already exists in catalog: " + key);

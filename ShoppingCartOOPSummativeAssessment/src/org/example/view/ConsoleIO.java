@@ -28,8 +28,7 @@ public class ConsoleIO {
      */
     public String getInput(String prompt){
         writeMessage(prompt);
-        String input = console.nextLine();
-        return input;
+        return console.nextLine();
     }
 
     /**

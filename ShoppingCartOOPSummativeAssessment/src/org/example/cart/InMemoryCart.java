@@ -32,7 +32,6 @@ public class InMemoryCart implements Cart {
      */
     @Override
     public void addItemToCart(Item item, int quantity){
-        // we assume it is a valid Item that is in the catalog
         String itemSKU = item.getSku();
         if(itemsInCart.containsKey(itemSKU)){
             itemsInCart.get(itemSKU).add(quantity);
@@ -57,7 +56,6 @@ public class InMemoryCart implements Cart {
      */
     @Override
     public void removeItemFromCart(Item item, int quantity) {
-        // we assume it is a valid Item that is in the catalog
         String itemSKU = item.getSku();
         if(!itemsInCart.containsKey(itemSKU)){
             return;
@@ -80,8 +78,7 @@ public class InMemoryCart implements Cart {
     public BigDecimal getSubtotal() {
         BigDecimal subtotal = new BigDecimal("0");
         for(String sku : itemsInCart.keySet()){
-            BigDecimal quantity = new BigDecimal(itemsInCart.get(sku).getQuantity());
-            subtotal = subtotal.add(quantity.multiply(itemsInCart.get(sku).getItem().getUnitPrice()));
+            subtotal = subtotal.add(itemsInCart.get(sku).getLineTotal());
         }
         return subtotal;
     }

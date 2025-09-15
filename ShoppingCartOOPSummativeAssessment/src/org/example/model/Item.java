@@ -3,10 +3,6 @@ package org.example.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-// Represents a product in the store catalog
-// Immutable (all fields final, no setters)
-// Uses BigDecimal for money to avoid float rounding issues
-
 public class Item {
     private final String sku;                   // Unique Code, e.g. "MRC"
     private final String name;
@@ -49,8 +45,6 @@ public class Item {
         if (!(o instanceof Item)) return false;
         return sku.equals(((Item) o).sku);
     }
-
-    @Override public int hashCode() { return Objects.hash(sku); }
 
     @Override public String toString() {
         return sku + " - " + name + " ($" + unitPrice + ")";
