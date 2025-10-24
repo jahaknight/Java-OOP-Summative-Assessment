@@ -7,7 +7,6 @@ import java.math.BigDecimal;
  * - Item being purchased
  * - Quantity of that item
  * - Can compute its own line total (unit price * quantity)
- *
  * Quantity is mutable (changes when you add/remove).
  * Item is immutable (price/name/sku don't change).
  */
